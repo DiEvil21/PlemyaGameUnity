@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BranchSpawner : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BranchSpawner : MonoBehaviour
     void Start()
     {
         timerIsRunning = true;
+        System.Random r = new System.Random();
+        timeRemaining = r.Next(10, 50);
     }
 
     // Update is called once per frame
@@ -24,11 +27,12 @@ public class BranchSpawner : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
             }
             else
-            {
+            {   
                 Debug.Log("Tree timer has run out!");
                 SpawnDropppedItem();
-                timeRemaining = 30;
-                
+                System.Random r = new System.Random();
+                timeRemaining = r.Next(30, 300);
+
             }
         }
     }
