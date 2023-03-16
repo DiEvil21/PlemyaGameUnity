@@ -39,6 +39,14 @@ public class PlayerController : MonoBehaviour
         
         //Debug.Log(_rigidBody.velocity.magnitude);
         movePlayer();
+        if (isGrounded())
+        {
+            _rigidBody.useGravity = false;
+        }
+        else
+        {
+            _rigidBody.useGravity = true;
+        }
         if (_rigidBody.velocity.magnitude > 0.1 || _rigidBody.velocity.magnitude < -0.1)
         {
             model.GetComponent<Animator>().SetBool("isWalking", true);
@@ -60,6 +68,7 @@ public class PlayerController : MonoBehaviour
                 model.GetComponent<Animator>().SetBool("isRunning", false);
                 break;
         }
+
     }
     public bool isGrounded() {
         if (Physics.Raycast(transform.position, Vector3.down, 1.1f))
